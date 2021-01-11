@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public partial class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /// <summary>
+    /// 初期処理
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Start()
     {
         //最初は設定パネルを非表示
@@ -18,21 +21,30 @@ public partial class GameController : MonoBehaviour
         popupAnimator = pnlPopup.GetComponent<Animator>();
         popupAnimator.SetBool("IsPopup", true);
 
-        //設定エリアを表示するまで少し待つ
+        //少し待ってから設定エリアを表示
         yield return new WaitForSecondsRealtime(0.2f);
 
         //設定パネルを表示
         settingArea.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// ゲームメイン処理
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator GameMain()
     {
-        
+        //少し待ってから設定エリアを非表示
+        yield return new WaitForSecondsRealtime(0.2f);
+        settingArea.SetActive(false);
+
+
+
+        Debug.Log("AAA");
     }
 
     /// <summary>
-    /// 問題数増減
+    /// 問題数増減ボタンクリック時
     /// </summary>
     /// <param name="isMinus"></param>
     public void ChangeQuestionAmount(bool isMinus)
@@ -48,13 +60,18 @@ public partial class GameController : MonoBehaviour
 
         //UI更新
         txtQuestionAmount.text = questionAmount.ToString();
-
     }
 
+    /// <summary>
+    /// スタートボタンクリック時
+    /// </summary>
     public void QuestionAmountSelected()
     {
+        //ポップダウンアニメーション
         popupAnimator.SetBool("IsPopdown", true);
-        settingArea.SetActive(false);
+
+        //ゲームを開始
+        StartCoroutine(GameMain());
     }
 
 }
