@@ -11,8 +11,9 @@ public partial class GameController : MonoBehaviour
     /// <returns></returns>
     IEnumerator Start()
     {
-        //最初は設定パネルを非表示
+        //最初は設定パネルとゲームエリアを非表示
         settingArea.SetActive(false);
+        gameArea.SetActive(false);
 
         //デフォルト問題数をセット
         txtQuestionAmount.text = questionAmount.ToString();
@@ -22,7 +23,7 @@ public partial class GameController : MonoBehaviour
         popupAnimator.SetBool("IsPopup", true);
 
         //少し待ってから設定エリアを表示
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(GlobalConst.PANEL_DISPLAY_WAIT);
 
         //設定パネルを表示
         settingArea.SetActive(true);
@@ -35,7 +36,7 @@ public partial class GameController : MonoBehaviour
     private IEnumerator GameMain()
     {
         //少し待ってから設定エリアを非表示
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(GlobalConst.PANEL_DISPLAY_WAIT);
         settingArea.SetActive(false);
 
 
@@ -49,7 +50,7 @@ public partial class GameController : MonoBehaviour
     /// <param name="isMinus"></param>
     public void ChangeQuestionAmount(bool isMinus)
     {
-        if(isMinus && questionAmount != 5)
+        if(isMinus && questionAmount > 5)
         {
             questionAmount -= 5;
         }

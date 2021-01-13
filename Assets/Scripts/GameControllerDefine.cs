@@ -32,4 +32,10 @@ public partial class GameController : MonoBehaviour
     /// 問題数
     /// </summary>
     private int questionAmount = GlobalConst.QUESTION_AMOUNT_DEFAULT;
+
+    /// <summary>
+    /// ゲームエリア
+    /// </summary>
+    [SerializeField]
+    private GameObject gameArea;
 }

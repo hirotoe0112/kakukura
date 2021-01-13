@@ -13,6 +13,11 @@ public class GlobalConst
     #endregion
 
     /// <summary>
+    /// パネルの内容を表示／非表示するタイミング
+    /// </summary>
+    public const float PANEL_DISPLAY_WAIT = 0.2f;
+
+    /// <summary>
     /// デフォルト問題数
     /// </summary>
     public const int QUESTION_AMOUNT_DEFAULT = 10;
